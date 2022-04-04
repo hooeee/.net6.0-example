@@ -1,0 +1,1 @@
+﻿https://docs.microsoft.com/ko-kr/ef/core/get-started/overview/first-app?tabs=netcore-cli
