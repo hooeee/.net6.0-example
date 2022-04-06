@@ -13,8 +13,7 @@ namespace CodeFirstEntity.Entities
         public DbSet<Post> Posts { get; set; }
         public string DbPath { get; }
 
-        private string DATA_SOURCE = "UserID=root;Password=dkrnl1318;Server=database-postgresql-1.cr4ulfvyna2m.us-west-1.rds.amazonaws.com;Port=5432;Database=efcoredb;IntegratedSecurity=true;Pooling=true;";
-
+        string dbsource = "UserID=postgres;Password=root;Server=localhost;Port=5432;Database=teamtech;IntegratedSecurity=true;Pooling=true;";
         public BloggingContext()
         {
             var folder = Environment.SpecialFolder.LocalApplicationData;
@@ -25,7 +24,7 @@ namespace CodeFirstEntity.Entities
         // The following configures EF to create a Sqlite database file in the
         // special "local" folder for your platform.
         protected override void OnConfiguring(DbContextOptionsBuilder options)
-            => options.UseNpgsql(DATA_SOURCE).LogTo((a) =>
+            => options.UseNpgsql(dbsource).LogTo((a) =>
             {
                 Console.WriteLine(a);
             });

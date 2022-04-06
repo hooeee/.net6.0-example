@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CodeFirstEntity.Entities
+namespace TeamTech.ORM.Entities.Models
 {
     public class Post
     {
@@ -13,7 +13,7 @@ namespace CodeFirstEntity.Entities
         public string Body { get; set; }
         public DateTime Created { get; set; }
         public int Updated { get; set; }
-        public int BlogId { get; set; }
+        public int BlogId { get; set; } = 1;
         public Blog Blog { get; set; }
 
     }

@@ -11,7 +11,6 @@ using var db = new BloggingContext();
 
 db.Blogs.Add(new Blog()
 {
-    BlogId = 4,
     Name = "test",
     Id = 4,
 });
