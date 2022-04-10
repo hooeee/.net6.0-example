@@ -10,26 +10,16 @@ namespace TeamTech.ORM.Entities
         public DbSet<Post> Posts { get; set; }
 
 
-        string dbsource = "UserID=postgres;Password=root;Server=localhost;Port=5432;Database=teamtech;IntegratedSecurity=true;Pooling=true;";
-
-        public BloggingContext(DbContextOptions<BloggingContext> options) : base(options) {
-
-            var sqlServerOptionsExtension =
-                   options.FindExtension<NpgsqlDbContextOptionsBuilderExtensions>();
-            if (sqlServerOptionsExtension != null)
-            {
-                string connectionString = sqlServerOptionsExtension.ConnectionString;
-            }
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<Blog>().ToTable("blogs");
+            modelBuilder.Entity<Post>().ToTable("posts");
         }
 
-        protected override void OnConfiguring(DbContextOptionsBuilder options)
-            => options.UseNpgsql(dbsource);
-        public BloggingContext CreateDbContext(string[] args)
-        {
-            var optionsBuilder = new DbContextOptionsBuilder<BloggingContext>();
-            optionsBuilder.UseNpgsql(dbsource);
 
-            return new BloggingContext(optionsBuilder.Options);
+        public BloggingContext(DbContextOptions<BloggingContext> options) : base(options)
+        {
+
         }
 
     }

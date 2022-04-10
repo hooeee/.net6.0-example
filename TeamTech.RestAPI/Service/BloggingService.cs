@@ -16,7 +16,7 @@ namespace TeamTech.RestAPI.Service
 
         public Blog Save(string name, string description)
         {
-            var savedEntity = _bloggingContext.Blogs.Add(new Blog() { Name = name, Id=11 });
+            var savedEntity = _bloggingContext.Blogs.Add(new Blog() { Name = name, Id=99 });
             _bloggingContext.SaveChanges();
 
             return savedEntity.Entity;

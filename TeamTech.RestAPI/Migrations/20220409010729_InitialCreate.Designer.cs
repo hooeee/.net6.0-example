@@ -12,7 +12,7 @@ using TeamTech.ORM.Entities;
 namespace TeamTech.RestAPI.Migrations
 {
     [DbContext(typeof(BloggingContext))]
-    [Migration("20220406160422_InitialCreate")]
+    [Migration("20220409010729_InitialCreate")]
     partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -32,9 +32,8 @@ namespace TeamTech.RestAPI.Migrations
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
 
-                    b.Property<string>("Description")
-                        .IsRequired()
-                        .HasColumnType("text");
+                    b.Property<DateTime>("CreatedDate")
+                        .HasColumnType("timestamp with time zone");
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -42,7 +41,7 @@ namespace TeamTech.RestAPI.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Blogs");
+                    b.ToTable("blogs", (string)null);
                 });
 
             modelBuilder.Entity("TeamTech.ORM.Entities.Models.Post", b =>
@@ -74,18 +73,23 @@ namespace TeamTech.RestAPI.Migrations
 
                     b.HasIndex("BlogId");
 
-                    b.ToTable("Posts");
+                    b.ToTable("posts", (string)null);
                 });
 
             modelBuilder.Entity("TeamTech.ORM.Entities.Models.Post", b =>
                 {
                     b.HasOne("TeamTech.ORM.Entities.Models.Blog", "Blog")
-                        .WithMany()
+                        .WithMany("Posts")
                         .HasForeignKey("BlogId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("Blog");
+                });
+
+            modelBuilder.Entity("TeamTech.ORM.Entities.Models.Blog", b =>
+                {
+                    b.Navigation("Posts");
                 });
 #pragma warning restore 612, 618
         }

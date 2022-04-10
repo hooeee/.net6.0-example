@@ -12,7 +12,6 @@ namespace TeamTech.RestAPI.Controllers
     public class BlogController : Controller
     {
         private readonly BloggingService _bloggingService;
-
         public BlogController(BloggingService bloggingService)
         {
             _bloggingService = bloggingService;
