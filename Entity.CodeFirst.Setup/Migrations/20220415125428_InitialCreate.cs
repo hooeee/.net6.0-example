@@ -4,63 +4,62 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 #nullable disable
 
-namespace CodeFirstEntity.Migrations
+namespace Entity.CodeFirst.Setup.Migrations
 {
     public partial class InitialCreate : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
-                name: "Blogs",
+                name: "blogs",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "integer", nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
                     Name = table.Column<string>(type: "text", nullable: false),
-                    BlogId = table.Column<int>(type: "integer", nullable: false),
                     CreatedDate = table.Column<DateTime>(type: "timestamp with time zone", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Blogs", x => x.Id);
+                    table.PrimaryKey("PK_blogs", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
-                name: "Posts",
+                name: "posts",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "integer", nullable: true)
+                    Id = table.Column<int>(type: "integer", nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
-                    Title = table.Column<string>(type: "text", nullable: true),
-                    Body = table.Column<string>(type: "text", nullable: true),
-                    Created = table.Column<DateTime>(type: "timestamp with time zone", nullable: true),
-                    Updated = table.Column<int>(type: "integer", nullable: true),
-                    BlogId = table.Column<int>(type: "integer", nullable: true)
+                    Title = table.Column<string>(type: "text", nullable: false),
+                    Body = table.Column<string>(type: "text", nullable: false),
+                    Created = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
+                    Updated = table.Column<int>(type: "integer", nullable: false),
+                    BlogId = table.Column<int>(type: "integer", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Posts", x => x.Id);
+                    table.PrimaryKey("PK_posts", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Posts_Blogs_BlogId",
+                        name: "FK_posts_blogs_BlogId",
                         column: x => x.BlogId,
-                        principalTable: "Blogs",
+                        principalTable: "blogs",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_Posts_BlogId",
-                table: "Posts",
+                name: "IX_posts_BlogId",
+                table: "posts",
                 column: "BlogId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "Posts");
+                name: "posts");
 
             migrationBuilder.DropTable(
-                name: "Blogs");
+                name: "blogs");
         }
     }
 }

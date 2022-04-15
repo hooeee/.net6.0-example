@@ -9,10 +9,10 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 #nullable disable
 
-namespace CodeFirstEntity.Migrations
+namespace Entity.CodeFirst.Setup.Migrations
 {
     [DbContext(typeof(BloggingContext))]
-    [Migration("20220404145717_InitialCreate")]
+    [Migration("20220415125428_InitialCreate")]
     partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -32,9 +32,6 @@ namespace CodeFirstEntity.Migrations
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
 
-                    b.Property<int>("BlogId")
-                        .HasColumnType("integer");
-
                     b.Property<DateTime>("CreatedDate")
                         .HasColumnType("timestamp with time zone");
 
@@ -44,7 +41,7 @@ namespace CodeFirstEntity.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Blogs");
+                    b.ToTable("blogs");
                 });
 
             modelBuilder.Entity("CodeFirstEntity.Entities.Post", b =>
@@ -76,7 +73,7 @@ namespace CodeFirstEntity.Migrations
 
                     b.HasIndex("BlogId");
 
-                    b.ToTable("Posts");
+                    b.ToTable("posts");
                 });
 
             modelBuilder.Entity("CodeFirstEntity.Entities.Post", b =>
