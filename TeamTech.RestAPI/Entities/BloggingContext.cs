@@ -1,10 +1,11 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using System.Diagnostics;
 using TeamTech.ORM.Entities.Models;
+using TeamTech.RestAPI.Service;
 
 namespace TeamTech.ORM.Entities
 {
-    public class BloggingContext : DbContext
+    public class BloggingContext : DbContext , IBlogService
     {
         public DbSet<Blog> Blogs { get; set; }
         public DbSet<Post> Posts { get; set; }
@@ -16,6 +17,10 @@ namespace TeamTech.ORM.Entities
             modelBuilder.Entity<Post>().ToTable("posts");
         }
 
+        public void Test()
+        {
+
+        }
 
         public BloggingContext(DbContextOptions<BloggingContext> options) : base(options)
         {

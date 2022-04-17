@@ -10,7 +10,7 @@ string dbsource = "UserID=postgres;Password=root;Server=localhost;Port=5432;Data
 builder.Services.AddControllersWithViews();
 builder.Services.AddScoped<BloggingContext>()
     .AddScoped<BloggingService>()
-    .AddScoped<BloggingContext>()
+    .AddScoped<IBlogService, BloggingContext>()
     .AddDbContext<BloggingContext>(o =>
     {
         o.UseNpgsql(dbsource, x=>x.MigrationsAssembly("TeamTech.RestAPI"));
@@ -29,6 +29,8 @@ if (!app.Environment.IsDevelopment())
 else { 
     app.UseDeveloperExceptionPage();
 }
+
+
 
 
 using (var scope = app.Services.CreateScope())
