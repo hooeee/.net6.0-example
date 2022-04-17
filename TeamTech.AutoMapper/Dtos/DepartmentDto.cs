@@ -6,12 +6,10 @@ using System.Threading.Tasks;
 
 namespace TeamTech.AutoMapper.Dtos
 {
-    public class MemberDto
+    public class DepartmentDto
     {
-
+        public int Id { get; set; }
         public string Name { get; set; }
-        public string Tel { get; set; }
-
-        public DepartmentDto Department { get; set; }
+        public IEnumerable<MemberDto> members { get; set; }
     }
 }

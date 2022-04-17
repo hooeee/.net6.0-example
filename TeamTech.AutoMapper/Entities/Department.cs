@@ -4,14 +4,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace TeamTech.AutoMapper.Dtos
+namespace TeamTech.AutoMapper.Entities
 {
-    public class MemberDto
+    public class Department
     {
-
+        public int Id { get; set; }
         public string Name { get; set; }
-        public string Tel { get; set; }
-
-        public DepartmentDto Department { get; set; }
+        public IEnumerable<Member> members { get; set; }
     }
 }

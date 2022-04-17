@@ -5,4 +5,4 @@ Console.WriteLine("Hello, World!");
 
 
 AutoMapperTest autoMapperTest = new AutoMapperTest();
-autoMapperTest.Test2();
+autoMapperTest.Test4();

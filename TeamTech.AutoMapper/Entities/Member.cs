@@ -11,5 +11,7 @@ namespace TeamTech.AutoMapper.Entities
 
         public string Name { get; set; }
         public string Tel { get; set; }
+
+        public Department Department { get; set; }
     }
 }
